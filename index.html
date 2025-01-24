@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="music-player">
+        <img id="musicAlbum-cover">
+        <div class="music-player-description">
+            <p class="musicTitle"></p>
+            <p class="musicArtist"></p>
+            <p class="musicAlbum"></p>
+        </div>
+
+        <p class="musicTime"></p>
+
+        <div class="music-player-buttons">
+            <button id="music-rewind" type="button">
+                &lt;&lt;
+            </button>
+            <button id="music-previous" type="button">
+                &lt;-
+            </button>
+            <button id="music-pause" type="button">
+                ▷||
+            </button>
+            <button id="music-next" type="button">
+                ->
+            </button>
+            <button id="music-forward" type="button">
+                >>
+            </button>
+        </div>
+    </div>
+    <script src="/static/js/jsmediatags.min.js"></script>
+    <script src="/static/js/music_src.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
