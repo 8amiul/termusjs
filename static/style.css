@@ -56,7 +56,7 @@ body {
 }
 
 .music-player-buttons {
-    margin-top: 2rem;
+    margin-top: 1rem;
     align-self: center;
 }
 
@@ -78,8 +78,20 @@ body {
     filter: invert(100%) sepia(32%) saturate(4770%) hue-rotate(307deg) brightness(95%) contrast(98%);
 }
 
+#shuffle.off img,
+#repeat.off img
+{
+    filter: invert(50%) sepia(32%) saturate(4770%) hue-rotate(307deg) brightness(95%) contrast(98%);
+}
+
+
 .musicTitle, .musicAlbum {
     width: var(--musicplayer-width);
+}
+
+.music-player-upper-buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
 #volume-slider,

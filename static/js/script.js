@@ -1,4 +1,14 @@
 const totalMusic = music_src.length;
+const corsProxy = "https://cors-anywhere.herokuapp.com/"
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
+shuffleArray(music_src);
+
+
 let currentMusicPlaying = 0;
 //var audio = new Audio(music_src[currentMusicPlaying].src);
 var audio = new Audio();
@@ -10,6 +20,8 @@ let titleMusic = document.querySelector('.musicTitle');
 let artistMusic = document.querySelector('.musicArtist');
 let AlbumMusic = document.querySelector('.musicAlbum');
 
+let shuffle = false;
+let repeat = false;
 
 
 let musicVolumeSlider = document.querySelector('#volume-slider')
@@ -28,7 +40,7 @@ function musicLoad(musicPlayingNumber) {
     audio = null;
     currentMusicPlaying = musicPlayingNumber;
     fetchMusicTags();
-    audio = new Audio(music_src[currentMusicPlaying].link)
+    audio = new Audio(music_src[currentMusicPlaying])
     audio.volume = musicVolumeSlider.value / 100;
     audio.play()
 }
@@ -66,8 +78,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 })
 
+let shuffleQuery = document.querySelector("#shuffle");
+shuffleQuery.addEventListener("click", function() {
+    shuffle = !shuffle;
+    shuffleQuery.classList.toggle('off')
+})
+let repeatQuery = document.querySelector("#repeat");
+repeatQuery.addEventListener("click", function() {
+    repeat = !repeat;
+    repeatQuery.classList.toggle('off')
+})
 
-
+/*
 function fetchMusicTags () {
     titleMusic.innerText = music_src[currentMusicPlaying].title;
     artistMusic.innerHTML = music_src[currentMusicPlaying].artist;
@@ -86,10 +108,11 @@ function fetchMusicTags () {
     }});
 }
 fetchMusicTags()
+*/
 
-/*
 function fetchMusicTags () {
-    jsmediatags.read(music_src[currentMusicPlaying].link, {
+    //jsmediatags.read(`${corsProxy}${music_src[currentMusicPlaying]}`, {
+    jsmediatags.read(music_src[currentMusicPlaying], {
         onSuccess: function(tag) {
             titleMusic.innerText = tag.tags.title;
             artistMusic.innerText = tag.tags.artist;
@@ -109,7 +132,7 @@ function fetchMusicTags () {
     });
 }
 fetchMusicTags();
-*/
+
 
 
 
@@ -121,7 +144,10 @@ function nextMusicFunc() {
         musicLoad(currentMusicPlaying)
     if (currentMusicPlaying < totalMusic-1)
         {
-            currentMusicPlaying++;
+            if (shuffle)
+                currentMusicPlaying = Math.floor(Math.random() * totalMusic);
+            else
+                currentMusicPlaying++;
             musicLoad(currentMusicPlaying)
         }
 }
@@ -131,7 +157,10 @@ let previousMusic = document.querySelector('#music-previous');
 previousMusic.addEventListener("click", function () {
     if (currentMusicPlaying > 0)
     {
-        currentMusicPlaying--;
+        if (shuffle)
+            currentMusicPlaying = Math.floor(Math.random() * totalMusic);
+        else
+            currentMusicPlaying--;
         musicLoad(currentMusicPlaying);
     }
 })
@@ -182,7 +211,10 @@ function loop_100ms() {
     if (currentMusicPlaying != totalMusic-1)
     {
         if (audio.ended)
-            nextMusicFunc();
+            if (repeat)
+                musicLoad(currentMusicPlaying)
+            else
+                nextMusicFunc();
     }
 
     musicVolumeHTML.innerText = `Vol: ${Math.trunc(audio.volume * 100)}%`;

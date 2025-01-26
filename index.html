@@ -22,21 +22,30 @@
         <input id="volume-slider" type="range">
 
         <div class="music-player-buttons">
+            <div class="music-player-upper-buttons">
+                <button id="shuffle" type="button">
+                    <img src="/static/svg/shuffle.svg">
+                </button>
+                <button id="repeat" type="button">
+                    <img src="/static/svg/repeat.svg">
+                </button>
+            </div>
             <button id="music-rewind" type="button">
-                <img src="/static/svg/play-skip-back.svg">
+                <img src="/static/svg/play-back.svg">
             </button>
             <button id="music-previous" type="button">
-                <img src="/static/svg/play-back.svg">
+                <img src="/static/svg/play-skip-back.svg">
             </button>
             <button id="music-pause" type="button">
                 <img class="play-pause-svg" src="/static/svg/play.svg">
             </button>
             <button id="music-next" type="button">
-                <img src="/static/svg/play-forward.svg">
-            </button>
-            <button id="music-forward" type="button">
                 <img src="/static/svg/play-skip-forward.svg">
             </button>
+            <button id="music-forward" type="button">
+                <img src="/static/svg/play-forward.svg">
+            </button>
+
         </div>
 
         <input id="progress-slider" type="range">

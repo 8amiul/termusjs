@@ -1,3 +1,59 @@
+const music_src = [
+  "https://od.lk/s/NzVfNDY4ODc1ODFf/%28I%20Want%20to%20Be%20Your%29%20Mirror.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1ODJf/Are%20You%20Bored%20Yet_%20%28feat.%20Clairo%29.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1ODNf/Blossoms.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1ODRf/Can%20I%20Call%20You%20Tonight_.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1ODVf/Certainty.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1ODZf/Dancing%20with%20my%20phone.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1ODdf/Down%20the%20Line.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1OTJf/Each%20Time%20You%20Fall%20in%20Love.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1OTNf/Every%20Time%20Around.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1OTRf/Flash.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1OTVf/Gamma%20Rays.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1OTZf/Go%20Higher.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1OTdf/Hot%20Motion.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1OThf/Hot%20Rod.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1OTlf/If%20I%20Could%20Find%20You%20%28Eternity%29.mp3",
+  "https://od.lk/s/NzVfNDY4ODc2MDBf/In%20Between.mp3",
+  "https://od.lk/s/NzVfNDY4ODc2MDFf/Italo%20Disco.mp3",
+  "https://od.lk/s/NzVfNDY4ODc2MDJf/japan.mp3",
+  "https://od.lk/s/NzVfNDY4ODc2MDNf/Lamb%27s%20Wool.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1MjRf/Let%20It%20Happen.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1MjNf/Love%20Again.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Mjdf/Lovers%20Rock.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Mjhf/May%201st.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Mjlf/Metamodernity.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1MzBf/Move%20with%20the%20Season.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1MzVf/Mrs%20Magic.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1MzZf/New%20Gold%20%28feat.%20Tame%20Impala%20and%20Bootie%20Brown%29.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Mzdf/No%20More%20Lies.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Mzhf/Parking%20Lots.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Mzlf/Past%20Life.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NDhf/Powerlines.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NDlf/Quarterback.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NTBf/Saturnine.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NTFf/Shoot.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NTZf/Sky%20So%20Blue.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NTdf/So%20Good%20at%20Being%20in%20Trouble.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NThf/Social%20Jetlag.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NTlf/Something%20Stupid%20%28From%20_Better%20Call%20Saul_%29.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NjBf/Staring.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NjFf/Sugar.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NjJf/Tangerine.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NjNf/The%20Absent%20Sea.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NjRf/The%20Bay.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Njlf/The%20Fire.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NzBf/THE%20SHADE.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NzFf/What%20You%20Know.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1NzVf/Wings%20Of%20Time%20-%20From%20the%20Motion%20Picture%20Dungeons%20%26%20Dragons_%20Honor%20Among%20Thieves.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Nzhf/Within%20You%2C%20Within%20Me.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1Nzlf/You%20Are%20the%20Right%20One.mp3",
+  "https://od.lk/s/NzVfNDY4ODc1ODBf/Young%20Folks.mp3"
+];
+
+
+/*
+
 let music_src = 
 [
   {
@@ -351,3 +407,4 @@ let music_src =
     "year": "2006"
   }
 ]
+*/
