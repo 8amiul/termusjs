@@ -185,11 +185,11 @@ musicList.style.display = "none"
 listToggleBtn.addEventListener("click", function () {
     if (musicList.style.display == "none") {
         musicList.style.display = "block"
-        listToggleBtnSvg.src = "/static/svg/chevron-up.svg"
+        listToggleBtnSvg.src = "static/svg/chevron-up.svg"
     }
     else {
         musicList.style.display = "none"
-        listToggleBtnSvg.src = "/static/svg/chevron-down.svg"
+        listToggleBtnSvg.src = "static/svg/chevron-down.svg"
     }
 })
 
