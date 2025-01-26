@@ -82,7 +82,8 @@ body {
     width: var(--musicplayer-width);
 }
 
-#volume-slider {
+#volume-slider,
+#progress-slider {
     width: 30%;
     height: 5px;
     border-radius: 5px;
@@ -96,8 +97,15 @@ body {
     cursor: pointer;
 }
 
+#progress-slider {
+    width: inherit;
+    margin: 1rem;
+}
+
+
 /* Slider CSS for chromium based browser */
-#volume-slider::-webkit-slider-thumb
+#volume-slider::-webkit-slider-thumb,
+#progress-slider::-webkit-slider-thumb
 {
     -webkit-appearance: none;
     appearance: none;
@@ -111,7 +119,8 @@ body {
 
 
 /* Slider CSS for Firefox */
-#volume-slider::-moz-range-thumb
+#volume-slider::-moz-range-thumb,
+#progress-slider::-moz-range-thumb
 {
     -webkit-appearance: none;
     appearance: none;
@@ -122,21 +131,30 @@ body {
     border: none;
     cursor: pointer;
 }
-#volume-slider:hover::-moz-range-thumb {
+#volume-slider:hover::-moz-range-thumb,
+#progress-slider:hover::-moz-range-thumb
+ {
     -webkit-appearance: none;
     appearance: none;
     opacity: 100;
 }
-#volume-slider::-moz-range-progress {
+#volume-slider::-moz-range-progress,
+#progress-slider::-moz-range-progress 
+{
     -webkit-appearance: none;
     appearance: none;
     background-color: #ffffff;
 }
-#volume-slider:hover::-moz-range-progress {
+#volume-slider:hover::-moz-range-progress,
+#progress-slider:hover::-moz-range-progress
+{
     -webkit-appearance: none;
     appearance: none;
     background-color: #F0BB78;
 }
+
+/* ===================== */
+
 
 .music-list-container {
     margin: 1rem 0;

@@ -3,7 +3,7 @@ let currentMusicPlaying = 0;
 //var audio = new Audio(music_src[currentMusicPlaying].src);
 var audio = new Audio();
 
-audio.volume = 0.5;
+audio.volume = 1;
 
 let timeMusic = document.querySelector('.musicTime');
 let titleMusic = document.querySelector('.musicTitle');
@@ -164,8 +164,15 @@ listToggleBtn.addEventListener("click", function () {
     }
 })
 
+let musicProgressSlider = document.querySelector('#progress-slider')
+musicProgressSlider.value = 0;
 
-function printMusic() {
+musicProgressSlider.addEventListener("change", function() {
+    audio.currentTime = (musicProgressSlider.value * audio.duration) / 100;
+
+})
+
+function loop_100ms() {
 
     if (audio.paused)
         playPauseButtonIcon.src = "static/svg/play.svg";
@@ -181,7 +188,7 @@ function printMusic() {
     musicVolumeHTML.innerText = `Vol: ${Math.trunc(audio.volume * 100)}%`;
 
     if (audio.src != "") {
-        
+
         let totalSecondsDuration = Math.trunc(audio.duration);
         let hoursDur = Math.floor(totalSecondsDuration / 3600);
         let minutesDur = Math.floor((totalSecondsDuration % 3600) / 60);
@@ -198,9 +205,17 @@ function printMusic() {
         else
             timeMusic.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} / ${minutesDur.toString().padStart(2, '0')}:${secondsDur.toString().padStart(2, '0')}`;
     }
-        setTimeout(printMusic, 100);
+        setTimeout(loop_100ms, 100);
 }
-printMusic();
+
+function loop_1000ms() {
+
+    if (audio.src != "")
+        musicProgressSlider.value = (audio.currentTime / audio.duration) * 100;
+        setTimeout(loop_1000ms, 1000)
+}
+loop_100ms();
+loop_1000ms();
 
 
 
