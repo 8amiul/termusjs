@@ -1,7 +1,18 @@
+:root {
+    --musicplayer-width: 300px;
+    --musicplayer-list-height: 200px;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --musicplayer-width: 300px;
+    --musicplayer-list-height: 200px;
 }
 
 body {
@@ -10,14 +21,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .music-player {
     background-color: #000000;
     margin: 1rem;
-    border: 1px solid #D8C4B6;
-    border-radius: 10px;
+    border-radius: 15px;
     display: inline-flex;
     flex-direction: column;
     padding: 1rem;
@@ -30,10 +40,12 @@ body {
     color: #F0BB78;
 }
 
-.musicTime {
+.music-player-middle {
+    display: flex;
     margin: 1rem 0;
-    align-self: self-end;
+    justify-content: space-between;
     color: #F0BB78;
+
 }
 
 #musicAlbum-cover {
@@ -44,19 +56,144 @@ body {
 }
 
 .music-player-buttons {
+    margin-top: 2rem;
     align-self: center;
 }
 
-.music-player-buttons button {
-    background-color: #FFF0DC;
+.music-player-buttons button,
+.list-toggle-btn {
     color: #543A14;
     font-weight: bold;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
     width: 50px;
     height: 25px;
+    background-color: inherit;
+    cursor: pointer;
 }
 
-.music-player-buttons button img {
+.music-player-buttons button img,
+.list-toggle-btn-svg {
     width: 20px;
+    filter: invert(100%) sepia(32%) saturate(4770%) hue-rotate(307deg) brightness(95%) contrast(98%);
 }
+
+.musicTitle, .musicAlbum {
+    width: var(--musicplayer-width);
+}
+
+#volume-slider {
+    width: 30%;
+    height: 5px;
+    border-radius: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: rgb(107, 94, 79);
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
+}
+
+/* Slider CSS for chromium based browser */
+#volume-slider::-webkit-slider-thumb
+{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Slider CSS for Firefox */
+#volume-slider::-moz-range-thumb
+{
+    -webkit-appearance: none;
+    appearance: none;
+    opacity: 0;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+#volume-slider:hover::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    opacity: 100;
+}
+#volume-slider::-moz-range-progress {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #ffffff;
+}
+#volume-slider:hover::-moz-range-progress {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #F0BB78;
+}
+
+.music-list-container {
+    margin: 1rem 0;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.music-list-container ul {
+    margin-top: 1rem;
+    overflow-y: scroll;
+    height: var(--musicplayer-list-height);
+}
+
+
+.music-list-container li {
+
+    width: var(--musicplayer-width);
+    list-style: none;
+}
+
+.music-list-container li:hover {
+    background-color: #f0bc78a2;
+}
+
+.music-list-item {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: inherit;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    text-align: start;
+    width: var(--musicplayer-width);
+}
+
+.music-list-container li:nth-child(odd) {
+    background-color: #F0BB78;
+}
+
+.music-list-container li:nth-child(even) {
+    background-color: #f0bc78bd;
+}
+
+.music-list-container li:nth-child(odd):hover,
+.music-list-container li:nth-child(even):hover
+ {
+    background-color: #ffd096a2;
+}
+
+.list-toggle-btn {
+    align-self: center;
+    margin-top: 1rem;
+}
+
+.list-toggle-btn:hover {
+    display: block;
+}
+
